@@ -1,11 +1,11 @@
 ---
 ## Front matter
-title: "Шаблон отчёта по лабораторной работе"
-subtitle: "Простейший вариант"
-author: "Дмитрий Сергеевич Кулябов"
+title: "Индивидуальный проект"
+subtitle: "Этап №2"
+author: "Лебеденко Елена Викторовна"
 
-## Generic otions
-lang: ru-RU
+## Generic options
+lang: ru-Ru\
 toc-title: "Содержание"
 
 ## Bibliography
@@ -25,34 +25,29 @@ documentclass: scrreprt
 polyglossia-lang:
   name: russian
   options:
-	- spelling=modern
-	- babelshorthands=true
+    - spelling=modern
+    - babelshorthands=true
 polyglossia-otherlangs:
-  name: english
+   name: english
 ## I18n babel
 babel-lang: russian
 babel-otherlangs: english
 ## Fonts
-mainfont: IBM Plex Serif
-romanfont: IBM Plex Serif
-sansfont: IBM Plex Sans
-monofont: IBM Plex Mono
-mathfont: STIX Two Math
-mainfontoptions: Ligatures=Common,Ligatures=TeX,Scale=0.94
-romanfontoptions: Ligatures=Common,Ligatures=TeX,Scale=0.94
-sansfontoptions: Ligatures=Common,Ligatures=TeX,Scale=MatchLowercase,Scale=0.94
-monofontoptions: Scale=MatchLowercase,Scale=0.94,FakeStretch=0.9
-mathfontoptions:
+## Fonts
+mainfont: Times New Roman
+sansfont: Arial
+monofont: Courier New
+mathfont: Times New Roman
 ## Biblatex
 biblatex: true
 biblio-style: "gost-numeric"
 biblatexoptions:
-  - parentracker=true
-  - backend=biber
-  - hyperref=auto
-  - language=auto
-  - autolang=other*
-  - citestyle=gost-numeric
+   - parentracker=true
+   - backend=biber
+   - hyperref=auto
+   - language=auto
+   - autolang=other*
+   - citestyle=gost-numeric
 ## Pandoc-crossref LaTeX customization
 figureTitle: "Рис."
 tableTitle: "Таблица"
@@ -60,7 +55,7 @@ listingTitle: "Листинг"
 lofTitle: "Список иллюстраций"
 lotTitle: "Список таблиц"
 lolTitle: "Листинги"
-## Misc options
+## Misc options  
 indent: true
 header-includes:
   - \usepackage{indentfirst}
@@ -70,50 +65,39 @@ header-includes:
 
 # Цель работы
 
-Здесь приводится формулировка цели лабораторной работы. Формулировки
-цели для каждой лабораторной работы приведены в методических
-указаниях.
-
-Цель данного шаблона --- максимально упростить подготовку отчётов по
-лабораторным работам.  Модифицируя данный шаблон, студенты смогут без
-труда подготовить отчёт по лабораторным работам, а также познакомиться
-с основными возможностями разметки Markdown.
+Создание собственного научного сайта с помощью Github pages, добавление первоначальной информации о себе
 
 # Задание
 
-Здесь приводится описание задания в соответствии с рекомендациями
-методического пособия и выданным вариантом.
+Добавить к сайту данные о себе.
 
-# Теоретическое введение
+- Список добавляемых данных.
+- - Разместить фотографию владельца сайта.
+- - Разместить краткое описание владельца сайта (Biography).
+- - Добавить информацию об интересах (Interests).
+- - Добавить информацию от образовании (Education).
+- - Сделать пост по прошедшей неделе.
+- - Добавить пост на тему Управление версиями. Git.
 
-Здесь описываются теоретические аспекты, связанные с выполнением работы.
 
-Например, в табл. [-@tbl:std-dir] приведено краткое описание стандартных каталогов Unix.
 
-: Описание некоторых каталогов файловой системы GNU Linux {#tbl:std-dir}
+# Выполнение индивидуального проекта
 
-| Имя каталога | Описание каталога                                                                                                          |
-|--------------|----------------------------------------------------------------------------------------------------------------------------|
-| `/`          | Корневая директория, содержащая всю файловую                                                                               |
-| `/bin `      | Основные системные утилиты, необходимые как в однопользовательском режиме, так и при обычной работе всем пользователям     |
-| `/etc`       | Общесистемные конфигурационные файлы и файлы конфигурации установленных программ                                           |
-| `/home`      | Содержит домашние директории пользователей, которые, в свою очередь, содержат персональные настройки и данные пользователя |
-| `/media`     | Точки монтирования для сменных носителей                                                                                   |
-| `/root`      | Домашняя директория пользователя  `root`                                                                                   |
-| `/tmp`       | Временные файлы                                                                                                            |
-| `/usr`       | Вторичная иерархия для данных пользователя                                                                                 |
+## Размещение фотографии
 
-Более подробно про Unix см. в [@tanenbaum_book_modern-os_ru; @robbins_book_bash_en; @zarrelli_book_mastering-bash_en; @newham_book_learning-bash_en].
+![фото](/home/evlebedenko/work/study/2025-2026/Операционные системы/os-intro/project-personal/stage2/report/image/1.png){#fig:001 width=70%}
 
-# Выполнение лабораторной работы
+## Добавление информации
 
-Описываются проведённые действия, в качестве иллюстрации даётся ссылка на иллюстрацию (рис. [-@fig:001]).
+![информация](/home/evlebedenko/work/study/2025-2026/Операционные системы/os-intro/project-personal/stage2/report/image/2.png){#fig:002 width=70%}
 
-![Название рисунка](image/placeimg_800_600_tech.jpg){#fig:001 width=70%}
+## Пишу посты
+
+![Посты](/home/evlebedenko/work/study/2025-2026/Операционные системы/os-intro/project-personal/stage2/report/image/3.png){#fig:003 width=70%}
 
 # Выводы
 
-Здесь кратко описываются итоги проделанной работы.
+Во время выполнения первого этапа Индивидуального проекта я добавила базовую информацию о себе на свой сайт
 
 # Список литературы{.unnumbered}
 
