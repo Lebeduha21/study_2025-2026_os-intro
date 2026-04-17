@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Лебеденко Елена Викторовна">
+  <title>Обзор архитектур распределенных систем и локальных сетей.</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link href="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fdist%2Freset%2Ecss" rel="stylesheet">
+  <link href="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fdist%2Freveal%2Ecss" rel="stylesheet">
+  <style>
+.reveal .sourceCode { 
+overflow: visible;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <link href="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fdist%2Ftheme%2Fbeige%2Ecss" rel="stylesheet" id="theme">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Обзор архитектур распределенных систем и локальных
+сетей.</h1>
+  <p class="subtitle">Операционные системы</p>
+  <p class="author">Лебеденко Елена Викторовна</p>
+  <p class="institute">Российский университет дружбы народов, Москва,
+Россия</p>
+  <p class="date">17 апреля 2026</p>
+</section>
+
+<section id="информация" class="slide level1">
+<h1>Информация</h1>
+<h2 id="докладчик">Докладчик</h2>
+<div class="columns" data-align="center">
+<div class="column" style="width:70%;">
+<ul>
+<li>Лебеденко Елена Викторовна</li>
+<li>Студент НКАбд-04-25</li>
+<li>Российский университет дружбы народов</li>
+<li><a href="mailto:1032253535@rudn.ru">1032253535@rudn.ru</a></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="объект-и-предмет" class="slide level1">
+<h1>Объект и предмет</h1>
+<ul>
+<li><strong>Объект исследования</strong> – архитектуры распределенных
+вычислительных систем и локальных сетей, их компоненты и принципы
+взаимодействия.</li>
+<li><strong>Предмет исследования</strong> – модели OSI и IEEE 802, стек
+протоколов TCP/IP, сетевая подсистема UNIX, методы IP-адресации и
+маршрутизации, служба DNS.</li>
+</ul>
+</section>
+<section id="цель-работы" class="slide level1">
+<h1>Цель работы</h1>
+<ul>
+<li>Систематизировать знания об архитектурах распределенных систем и
+локальных сетей, выявить их ключевые свойства и взаимосвязи, а также
+проанализировать реализацию этих архитектур в сетевой подсистеме
+UNIX.</li>
+</ul>
+</section>
+<section id="задачи" class="slide level1">
+<h1>Задачи</h1>
+<ol type="1">
+<li>Дать определение распределенной системе и описать её ключевые
+свойства (прозрачность, открытость, масштабируемость).</li>
+<li>Представить классификацию архитектур по количеству ярусов (одно-,
+двух-, трех-, многоярусные).</li>
+<li>Описать модель OSI и стек TCP/IP как теоретическую основу сетевого
+взаимодействия.</li>
+<li>Рассмотреть модель IEEE 802 как модификацию OSI для локальных
+сетей.</li>
+<li>Проанализировать сетевую подсистему UNIX (интерфейсы, IP-адресацию,
+маршрутизацию, DNS).</li>
+</ol>
+</section>
+<section id="актульность" class="slide level1">
+<h1>Актульность</h1>
+<ul>
+<li>Сети объединяют <strong>разнородное оборудование, различные ОС и
+программы</strong>.</li>
+<li>Успешное взаимодействие → принятие общепринятых стандартов:
+<ul>
+<li><strong>OSI</strong> (международный стандарт)</li>
+<li><strong>IETF</strong> (набор стандартов Internet)</li>
+</ul></li>
+<li>Понимание архитектур необходимо для администрирования, настройки и
+диагностики сетевой инфраструктуры, особенно в UNIX-подобных
+системах.</li>
+</ul>
+</section>
+<section id="распределенные-системы-определение-и-свойства" class="slide level1">
+<h1>Распределенные системы — определение и свойства</h1>
+<p><strong>Распределенная система</strong> — набор независимых
+компьютеров, представляющихся пользователям единой объединенной
+системой.</p>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Свойство</th>
+<th>Характеристика</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Прозрачность</strong></td>
+<td>Скрытие различий между компьютерами и способов связи</td>
+</tr>
+<tr class="even">
+<td><strong>Открытость</strong></td>
+<td>Использование стандартизованных протоколов и интерфейсов</td>
+</tr>
+<tr class="odd">
+<td><strong>Масштабируемость</strong></td>
+<td>Расширение по размеру, географии и административному устройству</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="логические-слои-и-типы-архитектур" class="slide level1">
+<h1>Логические слои и типы архитектур</h1>
+<p><strong>Логические слои распределенных систем:</strong></p>
+<ol type="1">
+<li><strong>Презентационный слой</strong> — взаимодействие с
+пользователем</li>
+<li><strong>Слой прикладной логики</strong> — обработка данных
+(бизнес-логика)</li>
+<li><strong>Слой управления ресурсами</strong> — доступ к данным и
+внешним системам</li>
+</ol>
+<p><strong>Типы по количеству ярусов:</strong></p>
+<ul>
+<li>Одноярусные (монолит)</li>
+<li>Двухъярусные (клиент-сервер)</li>
+<li>Трехъярусные (с выделением middleware)</li>
+<li>Многоярусные (объединение разнородных систем)</li>
+</ul>
+</section>
+<section id="способы-взаимодействия-в-распределенных-системах" class="slide level1">
+<h1>Способы взаимодействия в распределенных системах</h1>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 43%" />
+<col style="width: 34%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Тип</th>
+<th>Описание</th>
+<th>Пример</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Синхронное</strong> (блокирующее)</td>
+<td>Клиент ждет ответа от сервера</td>
+<td>Классический RPC</td>
+</tr>
+<tr class="even">
+<td><strong>Асинхронное</strong> (неблокирующее)</td>
+<td>Клиент продолжает работу после запроса</td>
+<td>Электронная почта, очереди сообщений</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Преимущество асинхронного взаимодействия</strong> - слабая
+связанность компонентов, устойчивость к сбоям.</p>
+</section>
+<section id="локальные-сети-lan-определение-и-топологии" class="slide level1">
+<h1>Локальные сети (LAN) — определение и топологии</h1>
+<p><strong>LAN (Local Area Network)</strong> — коммуникационная система
+в пределах здания/территории с высокоскоростными цифровыми каналами
+связи.</p>
+<p>Топологии LAN:</p>
+<ul>
+<li>Шина — все компьютеры подключены к общему кабелю</li>
+<li>Звезда — каждый компьютер подключен к центральному устройству</li>
+<li>Кольцо — компьютеры соединены последовательно в замкнутую цепь</li>
+</ul>
+</section>
+<section id="модель-osi-7-уровней" class="slide level1">
+<h1>Модель OSI (7 уровней)</h1>
+<table>
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 57%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Уровень</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>7. Прикладной</td>
+<td>Управление вычислительными процессами, доступом к внешним
+устройствам</td>
+</tr>
+<tr class="even">
+<td>6. Представительный</td>
+<td>Доступ к файлам данных, преобразование данных в требуемый
+формат</td>
+</tr>
+<tr class="odd">
+<td>5. Сеансовый</td>
+<td>Установление и завершение логических соединений</td>
+</tr>
+<tr class="even">
+<td>4. Транспортный</td>
+<td>Фрагментация и сборка сообщений, передача файлов</td>
+</tr>
+<tr class="odd">
+<td>3. Сетевой</td>
+<td>Маршрутизация пакетов, управление потоками данных</td>
+</tr>
+<tr class="even">
+<td>2. Канальный</td>
+<td>Управление передачей кадров, контроль ошибок</td>
+</tr>
+<tr class="odd">
+<td>1. Физический</td>
+<td>Управление физическими соединениями, тактирование</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="модель-ieee-802-и-стек-tcpip" class="slide level1">
+<h1>Модель IEEE 802 и стек TCP/IP</h1>
+<p><strong>Модель IEEE 802</strong> (модификация OSI для LAN):</p>
+<ul>
+<li>Канальный уровень разделен на два подуровня:
+<ul>
+<li><strong>LLC (Logical Link Control)</strong> — универсальный для всех
+LAN</li>
+<li><strong>MAC (Medium Access Control)</strong> — определяет топологию
+и метод доступа</li>
+</ul></li>
+</ul>
+<p><strong>Стек TCP/IP</strong> (наиболее «оригинальный» для UNIX):</p>
+<ul>
+<li>IP — сетевой уровень (продвижение пакетов)</li>
+<li>TCP — надежная доставка с установлением соединения</li>
+<li>UDP — быстрая, ненадежная доставка</li>
+<li>ICMP — управление сообщениями об ошибках</li>
+</ul>
+</section>
+<section id="сетевой-интерфейс-и-конфигурация-ip-сетей" class="slide level1">
+<h1>Сетевой интерфейс и конфигурация IP-сетей</h1>
+<p><strong>Сетевой интерфейс</strong> — абстракция, связывающая
+канальный и сетевой уровни.</p>
+<p><strong>Характеристики интерфейса:</strong></p>
+<ul>
+<li>Уникальное имя (eth0 — для Ethernet, lo — loopback)</li>
+<li>IP-адрес и маска сети</li>
+<li>Аппаратный адрес (MAC-адрес)</li>
+</ul>
+<p><strong>IP-адресация:</strong></p>
+<ul>
+<li>IPv4: 4 байта, запись в десятичной системе (192.168.1.5)</li>
+<li>Loopback (lo): 127.0.0.1 (связь компьютера с самим собой)</li>
+</ul>
+<p><strong>Маршрутизация:</strong></p>
+<ul>
+<li>IP-адрес = адрес подсети + адрес узла</li>
+<li>Маска подсети определяет границу между ними</li>
+</ul>
+</section>
+<section id="служба-dns" class="slide level1">
+<h1>Служба DNS</h1>
+<p><strong>DNS (Domain Name Service)</strong> — распределенная сетевая
+база данных.</p>
+<p><strong>Назначение:</strong> преобразование доменных имен в
+IP-адреса.</p>
+<p><strong>Иерархическая структура:</strong></p>
+<ul>
+<li>Корневой домен (без имени)</li>
+<li>Домены верхнего уровня (com, edu, gov, ru, us и др.)</li>
+<li>Домены второго уровня (yandex.ru, rudn.ru и т.д.)</li>
+</ul>
+<p><strong>Принцип работы:</strong> клиент обращается к DNS-серверу,
+который находит соответствующий IP-адрес в распределенной базе.</p>
+</section>
+<section id="заключение" class="slide level1">
+<h1>Заключение</h1>
+<p>Архитектуры распределенных систем и LAN основаны на OSI/TCP/IP — UNIX
+реализовал их в своей сетевой подсистеме, что стало основой Internet.
+Понимание этих принципов необходимо для администрирования сетей.</p>
+</section>
+    </div>
+  </div>
+
+  <script src="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fdist%2Freveal%2Ejs"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fplugin%2Fnotes%2Fnotes%2Ejs"></script>
+  <script src="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fplugin%2Fsearch%2Fsearch%2Ejs"></script>
+  <script src="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fplugin%2Fzoom%2Fzoom%2Ejs"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
