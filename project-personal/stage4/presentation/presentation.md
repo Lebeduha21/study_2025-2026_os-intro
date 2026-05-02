@@ -2,12 +2,12 @@
 ## Front matter
 lang: ru-RU
 title: "Индивидуальный проект"
-subtitle: "Этап №2"
+subtitle: "Этап №4"
 author:
   - Лебеденко Е.В.
 institute:
   - Российский университет дружбы народов, Москва, Россия
-date: 21 марта 2026
+date: 2 мая 2026
 
 ## i18n babel
 babel-lang: russian
@@ -42,40 +42,50 @@ sansfont: Arial
 
 # Цель работы
 
-Создание собственного научного сайта с помощью Github pages
+Создание собственного научного сайта с помощью Github pages, добавление ссылок на ресурсы
 
 # Задание
 
-Добавить к сайту данные о себе.
+арегистрироваться на соответствующих ресурсах и разместить на них ссылки на сайте:
 
-- Список добавляемых данных.
-- - Разместить фотографию владельца сайта.
-- - Разместить краткое описание владельца сайта (Biography).
-- - Добавить информацию об интересах (Interests).
-- - Добавить информацию от образовании (Education).
-- - Сделать пост по прошедшей неделе.
-- - Добавить пост на тему Управление версиями. Git.
+- eLibrary : https://elibrary.ru/;
+- Google Scholar : https://scholar.google.com/;
+- ORCID : https://orcid.org/;
+- Mendeley : https://www.mendeley.com/;
+- ResearchGate : https://www.researchgate.net/;
+- Academia.edu : https://www.academia.edu/;
+- arXiv : https://arxiv.org/;
+- github : https://github.com/.
+
+---
+
+Сделать пост по прошедшей неделе.
+Добавить пост на тему по выбору:
+
+- Оформление отчёта.
+- Создание презентаций.
+- Работа с библиографией.
 
 # Выполнение индивидуального проекта
 
-## Размещение фотографии
+Изменяю файл me.yaml: добавляю информацию о навыках, опыте и достижениях
 
-![фото](/home/evlebedenko/work/study/2025-2026/Операционные системы/os-intro/project-personal/stage2/presentation/image/1.png){#fig:001 width=70%}
-
----
-
-## Добавление информации
-
-![информация](/home/evlebedenko/work/study/2025-2026/Операционные системы/os-intro/project-personal/stage2/presentation/image/2.png){#fig:002 width=70%}
+![1](/home/evlebedenko/work/study/2025-2026/Операционные системы/os-intro/project-personal/stage3/presentation/image/1.png){#fig:001 width=70%}
 
 ---
 
-## Пишу посты
+Добавляю новые посты
 
-![Посты](/home/evlebedenko/work/study/2025-2026/Операционные системы/os-intro/project-personal/stage2/report/image/3.png){#fig:003 width=70%}
+![2](/home/evlebedenko/work/study/2025-2026/Операционные системы/os-intro/project-personal/stage3/presentation/image/2.png){#fig:002 width=70%}
+
+---
+
+Отправляю на git
+
+![3](/home/evlebedenko/work/study/2025-2026/Операционные системы/os-intro/project-personal/stage3/report/image/3.png){#fig:003 width=70%}
 
 ---
 
 # Выводы
 
-Во время выполнения первого этапа Индивидуального проекта я обрела навыки создания сайта на базе шаблона Hugo Academic Theme
+Во время выполнения первого этапа Индивидуального проекта я добавила ссылки на некоторые ресурсы
